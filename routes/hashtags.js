@@ -45,10 +45,10 @@ router.get('/allHashtags', (req, res) => {
 
 router.delete('/delete', (req, res) => {
 const name = req.body.name
-console.log('name depuis route back ==>', name)
 Hashtag.find({ name }).then(data => {
-    console.log(data)
-    if(data.number === 1) {
+    // delete complètement le doc si number = 1 
+    // data[0] car data est une array
+    if(data[0].number === 1) {
         Hashtag.deleteOne({name}).then(deletedDoc => {
             if (deletedDoc.deletedCount > 0) {
                 Hashtag.find().then(data => {
@@ -57,6 +57,7 @@ Hashtag.find({ name }).then(data => {
             }
         })
     } else {
+        // fait -1 sinon
         Hashtag.updateOne({name},
             { $inc: { number: -1 } }
             ).then(() => {
