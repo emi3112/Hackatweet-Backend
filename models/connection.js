@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
-const connectionString = 'mongodb+srv://emiliebenistandpro:h1OqVkHZWg5cxYr1@cluster0.e4is5oz.mongodb.net/hackatweet'
+const connectionString = process.env.CONNECTION_STRING;
+// 'mongodb+srv://emiliebenistandpro:h1OqVkHZWg5cxYr1@cluster0.e4is5oz.mongodb.net/hackatweet'
 
 // process.env.CONNECTION_STRING;
 
