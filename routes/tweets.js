@@ -45,14 +45,14 @@ router.get("/allTweets/:username", (req, res) => {
 
 //  !!!!!!!!!!!!!!!!! si le tweet a des likes les deletes des doc des users aussi 
 // faire avec la méthode pull
-router.delete("/delete/:username", (req, res) => {
+router.delete("/delete", (req, res) => {
   const text = req.body.text;
-  const username = req.params.username
+  // const username = req.params.username
   Tweet.deleteOne({ text }).then((deletedDoc) => {
     if (deletedDoc.deletedCount > 0) {
-      User.find({username}).then(data => {
+      // User.find({username}).then(data => {
         
-      })
+      // })
       Tweet.find().then((data) => {
         res.json({ result: true, tweets: data });
       });
@@ -154,4 +154,5 @@ router.get("/myLikes/:username", (req, res) => {
       }
     });
 });
+
 module.exports = router;

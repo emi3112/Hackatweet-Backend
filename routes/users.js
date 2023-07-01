@@ -38,8 +38,6 @@ router.post('/signup', (req, res) => {
         password: hash,
         token: uid2(32),
         liked: [],
-        photoProfileBack: 'frontend/public/profileBack.jpg',
-        photoProfileFront: 'frontend/public/user.png',
       });
 
       newUser.save().then(newDoc => {
@@ -172,4 +170,13 @@ router.post('/updateInfos/:username', (req, res) => {
   } 
 })
 
+// FETCH LES INFOS D UN AUTRE USER
+router.get('/otherUserInfos/:username', (req, res) => {
+  const username = req.params.username
+  User.find({username}).then(data => {
+    if(data) {
+      res.json({result: true, userInfos: data})
+    }
+  })
+})
 module.exports = router;
