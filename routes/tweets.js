@@ -16,6 +16,7 @@ router.post("/newTweet", (req, res) => {
       date: new Date(),
       text: req.body.text,
       likes: req.body.likes,
+      gif: req.body.gif
     });
 
     newTweet.save().then((newDoc) => {
